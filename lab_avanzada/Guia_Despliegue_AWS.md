@@ -97,12 +97,12 @@ Instala `psql` si no lo tienes y conecta (usa SSL):
 
 ```bash
 # En Ubuntu/Debian
-  sudo apt update
-  sudo apt install postgresql-client -y
+sudo apt update
+sudo apt install postgresql-client -y
 
 # Conexión (ajusta endpoint, usuario y BD)
-  sql -h <endpoint-del-rds> -U <usuario> -d <nombre_base>
-
+sql -h <endpoint-del-rds> -U <usuario> -d <nombre_base>
+```
 
 
 Luego pega el SQL del esquema.
@@ -118,19 +118,18 @@ Estructura relevante en `Bakend/`:
 
 ### Variables de entorno (.env)
 
-Crea `Bakend/.env` a partir de `.env.example`:
+Edita tu archivo de entorno:
+```sudo nano /Backend/environment ```
 
-```env
-PORT=3000
-CORS_ORIGIN=http://<IP_o_DNS_publico_frontend>
-DB_HOST=<endpoint-rds>.amazonaws.com
-DB_PORT=5432
-DB_USER=<usuario>
-DB_PASSWORD=<password>
-DB_NAME=labdb
-DB_SSL=true
+
 ```
-
+DATABASE_URL=postgresql://<usuario>:<contraseña>@<endpoint>:5432/<nombre_base>
+```
+Luego
+```
+source /Backend/environment
+echo $DATABASE_URL
+```
 ### Conexión a RDS en el código
 
 Fragmento de `src/index.js`:
