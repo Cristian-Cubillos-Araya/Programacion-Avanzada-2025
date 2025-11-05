@@ -56,7 +56,6 @@ Asegúrate de asociar estos SG correctamente a cada recurso.
 - Usuario: según definiste.
 - Password: según definiste.
 - Base de datos: la que crees (por ejemplo `labdb`).
-- SSL: recomendado `true` (RDS soporta SSL; el backend lo usa para producción).
 
 ### Ejemplo de esquema SQL (tablas)
 
@@ -98,16 +97,13 @@ Instala `psql` si no lo tienes y conecta (usa SSL):
 
 ```bash
 # En Ubuntu/Debian
-sudo apt-get update && sudo apt-get install -y postgresql-client
+  sudo apt update
+  sudo apt install postgresql-client -y
 
 # Conexión (ajusta endpoint, usuario y BD)
-PGPASSWORD="<password>" psql \
-  --host=<endpoint-rds>.amazonaws.com \
-  --port=5432 \
-  --username=<usuario> \
-  --dbname=labdb \
-  "sslmode=require"
-```
+  sql -h <endpoint-del-rds> -U <usuario> -d <nombre_base>
+
+
 
 Luego pega el SQL del esquema.
 
