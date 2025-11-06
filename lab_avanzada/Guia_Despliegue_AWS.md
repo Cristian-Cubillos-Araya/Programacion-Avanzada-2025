@@ -101,7 +101,7 @@ sudo apt update
 sudo apt install postgresql-client -y
 
 # Conexión (ajusta endpoint, usuario y BD)
-sql -h <endpoint-del-rds> -U <usuario> -d <nombre_base>
+psql -h <endpoint-del-rds> -U <usuario> -d <nombre_base>
 ```
 
 
